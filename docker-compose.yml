@@ -3,6 +3,7 @@ version: "3.2"
 services:
   nextcloud-db:
     image: postgres
+    container_name: nextcloud-db
     restart: always
     volumes:
       - nextcloud-db:/var/lib/postgresql/data
@@ -13,6 +14,7 @@ services:
 
   nextcloud-app:
     image: nextcloud
+    container_name: nextcloud-app
     restart: always
     ports:
       - 8080:80
