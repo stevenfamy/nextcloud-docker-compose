@@ -22,6 +22,7 @@ services:
       - 8080:80
     volumes:
       - nextcloud-app:/var/www/html
+      - /media/hdd:/var/www/html/data
     environment:
       - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE=$MYSQL_DATABASE
