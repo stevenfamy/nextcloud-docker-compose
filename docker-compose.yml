@@ -8,6 +8,11 @@ services:
     command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
     volumes:
       - nextcloud-db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_USER=$MYSQL_USER
 
   nextcloud-app:
     image: nextcloud
@@ -17,6 +22,14 @@ services:
       - 8080:80
     volumes:
       - nextcloud-app:/var/www/html
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_HOST=$MYSQL_HOST
+      - NEXTCLOUD_ADMIN_PASSWORD=$NEXTCLOUD_ADMIN_PASSWORD
+      - NEXTCLOUD_ADMIN_USER=$NEXTCLOUD_ADMIN_USER
     depends_on:
       - nextcloud-db
 
